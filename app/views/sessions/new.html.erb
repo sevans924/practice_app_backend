@@ -1,0 +1,13 @@
+<h1>Log In</h1>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= form_with url: "/sessions" do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email  %>
+  <%= f.label :password_digest %>
+  <%= f.password_field :password_digest %>
+  <%= f.submit %>
+<% end %>

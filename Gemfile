@@ -6,6 +6,8 @@ ruby '2.6.1'
 #Bootstrap
 gem 'bootstrap', '~> 4.0.0'
 
+gem 'faker'
+
 #BreweryDB
 gem 'brewery_db'
 
@@ -30,7 +32,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -6,4 +6,13 @@ class Beer < ActiveRecord::Base
     has_many :users, through: :ratings
 
 
+    def is_it_org
+        if self.isOrganic
+            "Yes"
+        else
+            "No"
+    end
+end
+
+
 end

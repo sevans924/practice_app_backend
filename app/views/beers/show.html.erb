@@ -1,0 +1,11 @@
+<h1><%= @beer.name %></h1>
+
+<h3>ABV: <%= @beer.abv %></h3><br>
+<h3>Organic?: <%= @beer.is_it_org %></h3><br>
+<h3>Style: <%= @beer.category %></h3><br>
+<h3>Description: <%= @beer.description %></h3>
+
+
+<%= link_to 'Add Beer', rating_path %> <br>
+<%= link_to 'All Beer', beers_path %> <br>
+<%= link_to 'My Profile', user_path %>

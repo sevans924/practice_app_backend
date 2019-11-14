@@ -1,47 +1,29 @@
 class UsersController < ApplicationController
+  before_action :authorize!, only: [:index, :show]
 
-    before_action :find_student, only: [:show, :edit, :update, :delete]
+  def new
+    p session[:user_id]
+    @user = User.new
+  end
 
-          def index
-            @users = User.all
-            render json: @users
-          end 
+  def create
+    user = User.create(user_params)
+    session[:user_id] = user.id
+    redirect_to user_path(user)
+  end
 
-          def show
-            render json: @user
-          end
+  def show
+    if id_matches_current_user?(params[:id])
+      @user = User.find_by(id: params[:id])
+      render :show
+    else
+      flash[:notice] = "Log in!!"
+      redirect_to user_path(session[:user_id])
+    end
+  end
 
-          def edit
-            binding.pry
-            # newStudentInfo = params
-            # @student.update(params)
-            # @student.save
-          end
+  private
 
-
-          def create
-              @user = User.new(user_params)
-      
-              if @user.valid?
-                @user.save
-                render json: @user
-              else
-                render json: {
-                  status: 'error',
-                  message: 'Invalid Username or Password',
-                  code: 422
-                 }
-              end
-              
-            end
-            
-          def update
-              @student.update(student_params)
-              render json: @student
-          end
-
-                 
-      private
             def find_user
               @user = User.find(params[:id])
           end
@@ -51,9 +33,7 @@ class UsersController < ApplicationController
               params.require(:user).permit(:first_name, :last_name, :email, :password_digest)
           end
 
-    end
-  end
-end
+  
 
 
 end

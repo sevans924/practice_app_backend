@@ -1,0 +1,17 @@
+<h1>Hey, <%= @user.first_name%> you made it!</h1>
+
+
+<h2>Your beer</h2>
+<% if @user.beers.length > 0 %>
+<ul>
+<% @user.beers.each do |beer|%>
+<li><%= link_to beer.name, beer_path(beer)%></li>
+<%end%>
+</ul>
+<br>
+<% else %>
+<h3>You have no beer! Head to the bar!</h3>
+<%end%>
+
+<button><%= link_to 'The Bar', beers_path %></button> <br>
+<button><%= link_to 'Logout', logout_path, method: :delete %></button>
